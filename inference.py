@@ -12,7 +12,7 @@ def model_inference(df, load_model, StSc, UCL = 7.8, N_STEPS = 60):
     # прогноз на всей выборке и построение невязки
     X = create_sequences(StSc.transform(df), N_STEPS)
     cnn_residuals = pd.Series(np.sum(np.mean(np.abs(X - load_model.predict(X)), axis=1), axis=1))
-
+        
     # выделение аномалий и разметка на нормальный и аномальный режимы
     anomalous_data = cnn_residuals > UCL
     anomalous_data_indices = []
